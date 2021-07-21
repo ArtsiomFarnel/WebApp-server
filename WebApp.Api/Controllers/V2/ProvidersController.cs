@@ -34,6 +34,10 @@ namespace WebApp.Api.Controllers.V2
             _dataShaper = dataShaper;
         }
 
+        /// <summary>
+        /// Gets the list of all providers
+        /// </summary>
+        /// <returns>The providers list</returns>
         [HttpGet("get_all_providers")]
         public async Task<IActionResult> GetAllProviders([FromQuery] ProviderParameters param)
         {

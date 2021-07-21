@@ -42,6 +42,10 @@ namespace WebApp.Api.Controllers.V2
             _dataShaper = dataShaper;
         }
 
+        /// <summary>
+        /// Gets the list of all products
+        /// </summary>
+        /// <returns>The products list</returns>
         [HttpGet("get_all_products")]
         public async Task<IActionResult> GetAllProducts([FromQuery] ProductParameters param)
         {

@@ -35,6 +35,10 @@ namespace WebApp.Api.Controllers.V2
             _dataShaper = dataShaper;
         }
 
+        /// <summary>
+        /// Gets the list of all categories
+        /// </summary>
+        /// <returns>The categories list</returns>
         [HttpGet("get_all_categories")]
         public async Task<IActionResult> GetAllCategories([FromQuery] CategoryParameters param)
         {
