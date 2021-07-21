@@ -4,6 +4,155 @@
         <name>Api</name>
     </assembly>
     <members>
+        <member name="M:WebApp.Api.Controllers.AccountController.Register(WebApp.Application.Models.DataTransferObjects.Incoming.Users.UserRegistrationDto)">
+            <summary>
+            Creates a new user
+            </summary>
+            <param name="userRegistration"></param>
+            <returns>Created user</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.AccountController.Authenticate(WebApp.Application.Models.DataTransferObjects.Incoming.Users.UserAuthenticationDto)">
+            <summary>
+            Authenticate a user
+            </summary>
+            <param name="user"></param>
+            <returns>Authenticated user</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.CategoriesController.GetAllCategories(WebApp.Application.Models.RequestFeatures.Category.CategoryParameters)">
+            <summary>
+            Gets all categories
+            </summary>
+            <param name="param"></param>
+            <returns>All categories</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.CategoriesController.GetCategory(System.Nullable{System.Int32},System.String)">
+            <summary>
+            Gets a category
+            </summary>
+            <param name="id"></param>
+            <param name="fields"></param>
+            <returns>A category</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.CategoriesController.AddCategory(WebApp.Application.Models.DataTransferObjects.Incoming.Categories.CategoryAddDto)">
+            <summary>
+            Creates a new category
+            </summary>
+            <param name="categoryAdd"></param>
+            <returns>A newly category</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.CategoriesController.DeleteCategory(System.Nullable{System.Int32})">
+            <summary>
+            Deletes a category
+            </summary>
+            <param name="id"></param>
+            <returns>Deleted category</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.CategoriesController.UpdateCategory(System.Nullable{System.Int32},WebApp.Application.Models.DataTransferObjects.Incoming.Categories.CategoryUpdateDto)">
+            <summary>
+            Updates a category
+            </summary>
+            <param name="id"></param>
+            <param name="categoryUp"></param>
+            <returns>Updated category</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.CategoriesController.PartiallyUpdateCategory(System.Nullable{System.Int32},Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{WebApp.Application.Models.DataTransferObjects.Incoming.Categories.CategoryUpdateDto})">
+            <summary>
+            Partially updates a category
+            </summary>
+            <param name="id"></param>
+            <param name="patchDoc"></param>
+            <returns>Partially updated category</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.ProductsController.GetAllProducts(WebApp.Application.Models.RequestFeatures.Product.ProductParameters)">
+            <summary>
+            Gets all products
+            </summary>
+            <param name="param"></param>
+            <returns>All products</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.ProductsController.GetProduct(System.Nullable{System.Int32},System.String)">
+            <summary>
+            Gets a product
+            </summary>
+            <param name="id"></param>
+            <param name="fields"></param>
+            <returns>A product</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.ProductsController.AddProduct(WebApp.Application.Models.DataTransferObjects.Incoming.Products.ProductAddDto)">
+            <summary>
+            Creats a new product
+            </summary>
+            <param name="productAdd"></param>
+            <returns>A newly product</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.ProductsController.DeleteProduct(System.Nullable{System.Int32})">
+            <summary>
+            Deletes a product
+            </summary>
+            <param name="id"></param>
+            <returns>Deleted product</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.ProductsController.UpdateProduct(System.Nullable{System.Int32},WebApp.Application.Models.DataTransferObjects.Incoming.Products.ProductUpdateDto)">
+            <summary>
+            Updates a product
+            </summary>
+            <param name="id"></param>
+            <param name="productUp"></param>
+            <returns>Updated product</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.ProductsController.PartiallyUpdateProduct(System.Nullable{System.Int32},Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{WebApp.Application.Models.DataTransferObjects.Incoming.Products.ProductUpdateDto})">
+            <summary>
+            Partially updates a product
+            </summary>
+            <param name="id"></param>
+            <param name="patchDoc"></param>
+            <returns>Partialy updated product</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.ProvidersController.GetAllProviders(WebApp.Application.Models.RequestFeatures.Provider.ProviderParameters)">
+            <summary>
+            Gets all providers
+            </summary>
+            <param name="param"></param>
+            <returns>All providers</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.ProvidersController.GetProvider(System.Nullable{System.Int32},System.String)">
+            <summary>
+            Gets a provider
+            </summary>
+            <param name="id"></param>
+            <param name="fields"></param>
+            <returns>A provider</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.ProvidersController.AddProvider(WebApp.Application.Models.DataTransferObjects.Incoming.Providers.ProviderAddDto)">
+            <summary>
+            Creates a new provider
+            </summary>
+            <param name="providerAdd"></param>
+            <returns>Created newly provider</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.ProvidersController.DeleteProvider(System.Nullable{System.Int32})">
+            <summary>
+            Deletes a provider
+            </summary>
+            <param name="id"></param>
+            <returns>Deleted provider</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.ProvidersController.UpdateProvider(System.Nullable{System.Int32},WebApp.Application.Models.DataTransferObjects.Incoming.Providers.ProviderUpdateDto)">
+            <summary>
+            Updates a provider
+            </summary>
+            <param name="id"></param>
+            <param name="providerUp"></param>
+            <returns>Updated provider</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.ProvidersController.PartiallyUpdateProvider(System.Nullable{System.Int32},Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{WebApp.Application.Models.DataTransferObjects.Incoming.Providers.ProviderUpdateDto})">
+            <summary>
+            Partially updates a provider
+            </summary>
+            <param name="id"></param>
+            <param name="patchDoc"></param>
+            <returns>Partialy updated provider</returns>
+        </member>
         <member name="M:WebApp.Api.Controllers.V2.CategoriesController.GetAllCategories(WebApp.Application.Models.RequestFeatures.Category.CategoryParameters)">
             <summary>
             Gets the list of all categories

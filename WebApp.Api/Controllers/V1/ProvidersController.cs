@@ -40,6 +40,11 @@ namespace WebApp.Api.Controllers.V1
             _dataShaper = dataShaper;
         }
 
+        /// <summary>
+        /// Gets all providers
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns>All providers</returns>
         [HttpGet("get_all_providers")]
         public async Task<IActionResult> GetAllProviders([FromQuery] ProviderParameters param)
         {
@@ -59,6 +64,12 @@ namespace WebApp.Api.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Gets a provider
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="fields"></param>
+        /// <returns>A provider</returns>
         [HttpGet("get_provider")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Provider>))]
         public async Task<IActionResult> GetProvider(int? id, string fields)
@@ -78,6 +89,11 @@ namespace WebApp.Api.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Creates a new provider
+        /// </summary>
+        /// <param name="providerAdd"></param>
+        /// <returns>Created newly provider</returns>
         [Authorize(Roles = "Administrator")]
         [HttpPost("add_provider")]
         [ServiceFilter(typeof(ValidationActionFilter))]
@@ -99,6 +115,11 @@ namespace WebApp.Api.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Deletes a provider
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Deleted provider</returns>
         [Authorize(Roles = "Administrator")]
         [HttpDelete("delete_provider")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Provider>))]
@@ -120,6 +141,12 @@ namespace WebApp.Api.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Updates a provider
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="providerUp"></param>
+        /// <returns>Updated provider</returns>
         [Authorize(Roles = "Administrator")]
         [HttpPut("update_provider")]
         [ServiceFilter(typeof(ValidationActionFilter))]
@@ -142,6 +169,12 @@ namespace WebApp.Api.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Partially updates a provider
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="patchDoc"></param>
+        /// <returns>Partialy updated provider</returns>
         [Authorize(Roles = "Administrator")]
         [HttpPatch("partially_update_provider")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Provider>))]

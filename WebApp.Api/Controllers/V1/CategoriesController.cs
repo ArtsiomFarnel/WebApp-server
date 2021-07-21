@@ -39,7 +39,12 @@ namespace WebApp.Api.Controllers.V1
             _mapper = mapper;
             _dataShaper = dataShaper;
         }
-        
+
+        /// <summary>
+        /// Gets all categories
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns>All categories</returns>
         [HttpGet("get_all_categories")]
         public async Task<IActionResult> GetAllCategories([FromQuery] CategoryParameters param)
         {
@@ -59,6 +64,12 @@ namespace WebApp.Api.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Gets a category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="fields"></param>
+        /// <returns>A category</returns>
         [HttpGet("get_category")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Category>))]
         public async Task<IActionResult> GetCategory(int? id, string fields)
@@ -78,6 +89,11 @@ namespace WebApp.Api.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Creates a new category
+        /// </summary>
+        /// <param name="categoryAdd"></param>
+        /// <returns>A newly category</returns>
         [Authorize(Roles = "Administrator")]
         [HttpPost("add_category")]
         [ServiceFilter(typeof(ValidationActionFilter))]
@@ -99,6 +115,11 @@ namespace WebApp.Api.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Deletes a category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Deleted category</returns>
         [Authorize(Roles = "Administrator")]
         [HttpDelete("delete_category")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Category>))]
@@ -120,6 +141,12 @@ namespace WebApp.Api.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Updates a category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="categoryUp"></param>
+        /// <returns>Updated category</returns>
         [Authorize(Roles = "Administrator")]
         [HttpPut("update_category")]
         [ServiceFilter(typeof(ValidationActionFilter))]
@@ -142,6 +169,12 @@ namespace WebApp.Api.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Partially updates a category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="patchDoc"></param>
+        /// <returns>Partially updated category</returns>
         [Authorize(Roles = "Administrator")]
         [HttpPatch("partially_update_category")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Category>))]

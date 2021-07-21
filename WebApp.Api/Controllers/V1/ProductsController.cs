@@ -42,6 +42,11 @@ namespace WebApp.Api.Controllers.V1
             _dataShaper = dataShaper;
         }
 
+        /// <summary>
+        /// Gets all products
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns>All products</returns>
         [HttpGet("get_all_products")]
         public async Task<IActionResult> GetAllProducts([FromQuery] ProductParameters param)
         {
@@ -61,6 +66,12 @@ namespace WebApp.Api.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Gets a product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="fields"></param>
+        /// <returns>A product</returns>
         [HttpGet("get_product")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Product>))]
         public async Task<IActionResult> GetProduct(int? id, string fields)
@@ -80,6 +91,11 @@ namespace WebApp.Api.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Creats a new product
+        /// </summary>
+        /// <param name="productAdd"></param>
+        /// <returns>A newly product</returns>
         [Authorize(Roles = "Administrator")]
         [HttpPost("add_product")]
         [ServiceFilter(typeof(ValidationActionFilter))]
@@ -101,6 +117,11 @@ namespace WebApp.Api.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Deletes a product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Deleted product</returns>
         [Authorize(Roles = "Administrator")]
         [HttpDelete("delete_product")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Product>))]
@@ -122,6 +143,12 @@ namespace WebApp.Api.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Updates a product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="productUp"></param>
+        /// <returns>Updated product</returns>
         [Authorize(Roles = "Administrator")]
         [HttpPut("update_product")]
         [ServiceFilter(typeof(ValidationActionFilter))]
@@ -143,7 +170,13 @@ namespace WebApp.Api.Controllers.V1
                 return StatusCode(500, "Internal server error");
             }
         }
-        
+
+        /// <summary>
+        /// Partially updates a product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="patchDoc"></param>
+        /// <returns>Partialy updated product</returns>
         [Authorize(Roles = "Administrator")]
         [HttpPatch("partially_update_product")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Product>))]

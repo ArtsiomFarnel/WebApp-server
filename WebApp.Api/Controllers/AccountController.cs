@@ -37,6 +37,11 @@ namespace WebApp.Api.Controllers
             _authManager = authManager;
         }
 
+        /// <summary>
+        /// Creates a new user
+        /// </summary>
+        /// <param name="userRegistration"></param>
+        /// <returns>Created user</returns>
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserRegistrationDto userRegistration)
         {
@@ -66,6 +71,11 @@ namespace WebApp.Api.Controllers
             return StatusCode(201);
         }
 
+        /// <summary>
+        /// Authenticate a user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>Authenticated user</returns>
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate([FromBody] UserAuthenticationDto user)
         {
