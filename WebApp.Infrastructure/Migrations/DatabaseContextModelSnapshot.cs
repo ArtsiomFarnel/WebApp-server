@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.Infrastructure;
 
-namespace WebApp.Infrastructure.Migrations
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
     partial class DatabaseContextModelSnapshot : ModelSnapshot
@@ -170,13 +170,36 @@ namespace WebApp.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Categories");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Name = "test_cat"
+                            Name = "test_category_1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "test_category_2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "test_category_3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "test_category_4"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "test_category_5"
                         });
                 });
 
@@ -218,9 +241,135 @@ namespace WebApp.Infrastructure.Migrations
                             Id = 1,
                             CategoryId = 1,
                             Cost = 1.1f,
-                            Description = "test_descr",
-                            Name = "test_prod",
+                            Description = "test_description_1",
+                            Name = "test_product_1",
                             ProviderId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 1,
+                            Cost = 2.1f,
+                            Description = "test_description_2",
+                            Name = "test_product_2",
+                            ProviderId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 1,
+                            Cost = 1.6f,
+                            Description = "test_description_3",
+                            Name = "test_product_3",
+                            ProviderId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 1,
+                            Cost = 16.15f,
+                            Description = "test_description_4",
+                            Name = "test_product_4",
+                            ProviderId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 1,
+                            Cost = 11.11f,
+                            Description = "test_description_5",
+                            Name = "test_product_5",
+                            ProviderId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 2,
+                            Cost = 14.17f,
+                            Description = "test_description_6",
+                            Name = "test_product_6",
+                            ProviderId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 2,
+                            Cost = 5.5f,
+                            Description = "test_description_7",
+                            Name = "test_product_7",
+                            ProviderId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 2,
+                            Cost = 71.11f,
+                            Description = "test_description_8",
+                            Name = "test_product_8",
+                            ProviderId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 2,
+                            Cost = 10.06f,
+                            Description = "test_description_9",
+                            Name = "test_product_9",
+                            ProviderId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryId = 3,
+                            Cost = 0.01f,
+                            Description = "test_description_10",
+                            Name = "test_product_10",
+                            ProviderId = 3
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CategoryId = 3,
+                            Cost = 113.56f,
+                            Description = "test_description_11",
+                            Name = "test_product_11",
+                            ProviderId = 3
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CategoryId = 3,
+                            Cost = 4.7f,
+                            Description = "test_description_12",
+                            Name = "test_product_12",
+                            ProviderId = 3
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CategoryId = 4,
+                            Cost = 167.9f,
+                            Description = "test_description_13",
+                            Name = "test_product_13",
+                            ProviderId = 4
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CategoryId = 4,
+                            Cost = 6.66f,
+                            Description = "test_description_14",
+                            Name = "test_product_14",
+                            ProviderId = 4
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CategoryId = 5,
+                            Cost = 9.99f,
+                            Description = "test_description_15",
+                            Name = "test_product_15",
+                            ProviderId = 5
                         });
                 });
 
@@ -238,13 +387,36 @@ namespace WebApp.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Providers");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Name = "test_prov"
+                            Name = "test_provider_1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "test_provider_2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "test_provider_3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "test_provider_4"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "test_provider_5"
                         });
                 });
 
@@ -330,22 +502,22 @@ namespace WebApp.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c598c143-0f01-4bf5-983f-82226cce533b",
-                            ConcurrencyStamp = "7e3061e1-400a-4480-bbd0-d6d13f715615",
+                            Id = "aeb8833e-4796-474c-90ff-b0cb9e76dae1",
+                            ConcurrencyStamp = "b2a8c466-450a-41c5-9ead-1ff108e98333",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "06844e9e-e52f-403a-a8fb-f64fb5aafcb9",
-                            ConcurrencyStamp = "b7808867-41d8-45e9-a709-be6aefe15f52",
+                            Id = "f5493463-8b4c-4138-8932-3c6115a31f66",
+                            ConcurrencyStamp = "300c9f34-4f65-4033-88c7-cf1ad213c072",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "9947c649-2e1a-4ecf-8692-2a2071c0614b",
-                            ConcurrencyStamp = "2d819bb5-787a-43bf-94eb-c82e03ab76cf",
+                            Id = "35066c5e-d490-4b0f-9322-d232e9bda968",
+                            ConcurrencyStamp = "9b565b1a-9fdb-4e45-9c42-06823fbb55ed",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });

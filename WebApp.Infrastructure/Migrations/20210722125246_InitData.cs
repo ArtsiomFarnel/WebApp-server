@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebApp.Infrastructure.Migrations
+namespace Infrastructure.Migrations
 {
     public partial class InitData : Migration
     {
@@ -215,25 +215,56 @@ namespace WebApp.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "c598c143-0f01-4bf5-983f-82226cce533b", "7e3061e1-400a-4480-bbd0-d6d13f715615", "Role", "Manager", "MANAGER" },
-                    { "06844e9e-e52f-403a-a8fb-f64fb5aafcb9", "b7808867-41d8-45e9-a709-be6aefe15f52", "Role", "Administrator", "ADMINISTRATOR" },
-                    { "9947c649-2e1a-4ecf-8692-2a2071c0614b", "2d819bb5-787a-43bf-94eb-c82e03ab76cf", "Role", "Client", "CLIENT" }
+                    { "aeb8833e-4796-474c-90ff-b0cb9e76dae1", "b2a8c466-450a-41c5-9ead-1ff108e98333", "Role", "Manager", "MANAGER" },
+                    { "f5493463-8b4c-4138-8932-3c6115a31f66", "300c9f34-4f65-4033-88c7-cf1ad213c072", "Role", "Administrator", "ADMINISTRATOR" },
+                    { "35066c5e-d490-4b0f-9322-d232e9bda968", "9b565b1a-9fdb-4e45-9c42-06823fbb55ed", "Role", "Client", "CLIENT" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 1, "test_cat" });
+                values: new object[,]
+                {
+                    { 1, "test_category_1" },
+                    { 2, "test_category_2" },
+                    { 3, "test_category_3" },
+                    { 4, "test_category_4" },
+                    { 5, "test_category_5" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Providers",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 1, "test_prov" });
+                values: new object[,]
+                {
+                    { 1, "test_provider_1" },
+                    { 2, "test_provider_2" },
+                    { 3, "test_provider_3" },
+                    { 4, "test_provider_4" },
+                    { 5, "test_provider_5" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CategoryId", "Cost", "Description", "Name", "ProviderId" },
-                values: new object[] { 1, 1, 1.1f, "test_descr", "test_prod", 1 });
+                values: new object[,]
+                {
+                    { 1, 1, 1.1f, "test_description_1", "test_product_1", 1 },
+                    { 2, 1, 2.1f, "test_description_2", "test_product_2", 1 },
+                    { 3, 1, 1.6f, "test_description_3", "test_product_3", 1 },
+                    { 4, 1, 16.15f, "test_description_4", "test_product_4", 1 },
+                    { 5, 1, 11.11f, "test_description_5", "test_product_5", 1 },
+                    { 6, 2, 14.17f, "test_description_6", "test_product_6", 2 },
+                    { 7, 2, 5.5f, "test_description_7", "test_product_7", 2 },
+                    { 8, 2, 71.11f, "test_description_8", "test_product_8", 2 },
+                    { 9, 2, 10.06f, "test_description_9", "test_product_9", 2 },
+                    { 10, 3, 0.01f, "test_description_10", "test_product_10", 3 },
+                    { 11, 3, 113.56f, "test_description_11", "test_product_11", 3 },
+                    { 12, 3, 4.7f, "test_description_12", "test_product_12", 3 },
+                    { 13, 4, 167.9f, "test_description_13", "test_product_13", 4 },
+                    { 14, 4, 6.66f, "test_description_14", "test_product_14", 4 },
+                    { 15, 5, 9.99f, "test_description_15", "test_product_15", 5 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -275,6 +306,12 @@ namespace WebApp.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Categories_Name",
+                table: "Categories",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
@@ -283,6 +320,12 @@ namespace WebApp.Infrastructure.Migrations
                 name: "IX_Products_ProviderId",
                 table: "Products",
                 column: "ProviderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Providers_Name",
+                table: "Providers",
+                column: "Name",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

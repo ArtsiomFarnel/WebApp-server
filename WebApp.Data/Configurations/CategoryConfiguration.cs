@@ -11,8 +11,14 @@ namespace WebApp.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
+            builder.HasIndex(c => c.Name).IsUnique();
+
             builder.HasData(
-                new Category { Id = 1, Name = "test_cat" });
+                new Category { Id = 1, Name = "test_category_1" },
+                new Category { Id = 2, Name = "test_category_2" },
+                new Category { Id = 3, Name = "test_category_3" },
+                new Category { Id = 4, Name = "test_category_4" },
+                new Category { Id = 5, Name = "test_category_5" });
         }
     }
 }

@@ -53,7 +53,7 @@ namespace WebApp.Api.Extensions
             services.AddDbContext<DatabaseContext>(opts =>
                 opts.UseSqlServer(
                     configuration.GetConnectionString("DatabaseConnection"), 
-                    b => b.MigrationsAssembly("WebApp.Infrastructure")));
+                    b => b.MigrationsAssembly("Infrastructure")));
 
         public static void ConfigureCors(this IServiceCollection services) =>
             services.AddCors(options =>
