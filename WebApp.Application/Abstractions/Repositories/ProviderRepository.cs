@@ -31,6 +31,8 @@ namespace WebApp.Application.Abstractions.Repositories
         public async Task<PagedList<Provider>> GetAllProvidersAsync(ProviderParameters param, bool trackChanges)
         {
             var providers = await GetAll(trackChanges)
+                .Include(p => p.Products)
+                .ThenInclude(p => p.Category)
                 .SearchProvider(param.SearchTerm)
                 .SortProvider(param.OrderBy)
                 .ToListAsync();

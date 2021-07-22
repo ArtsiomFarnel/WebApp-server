@@ -35,8 +35,8 @@ namespace WebApp.Api.Extensions
                 config.RespectBrowserAcceptHeader = true;
                 config.ReturnHttpNotAcceptable = true;
             })
-                .AddNewtonsoftJson()
-                .AddXmlDataContractSerializerFormatters();
+                .AddNewtonsoftJson();
+                //.AddXmlDataContractSerializerFormatters();
         
         public static void ConfigureActionFilters(this IServiceCollection services)
         {

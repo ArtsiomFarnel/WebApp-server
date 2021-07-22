@@ -14,8 +14,7 @@ namespace WebApp.Application.Services
 
         public DataShaper()
         {
-            Properties = typeof(T).GetProperties(BindingFlags.Public |
-            BindingFlags.Instance);
+            Properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
         }
 
         public IEnumerable<ExpandoObject> ShapeData(IEnumerable<T> entities, string fieldsString)

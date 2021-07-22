@@ -30,6 +30,8 @@ namespace WebApp.Application.Abstractions.Repositories
         public async Task<PagedList<Category>> GetAllCategoriesAsync(CategoryParameters param, bool trackChanges)
         {
             var categories = await GetAll(trackChanges)
+                .Include(c => c.Products)
+                .ThenInclude(p => p.Provider)
                 .SearchCategory(param.SearchTerm)
                 .SortCategory(param.OrderBy)
                 .ToListAsync();
