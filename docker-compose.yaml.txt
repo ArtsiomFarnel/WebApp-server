@@ -1,0 +1,12 @@
+version: "3.4"
+services:
+  csharp: #docker run -it -v ${PWD}:/Api -w /Api -p 5000:5000 leeqviz/web_app:latest /bin/sh
+    container_name: web_app
+    image: leeqviz/web_app:latest
+    build:
+      context: .
+      target: debug
+    volumes:
+    - ./WebApp.Api/:/Api/
+    ports:
+      - 5001:5000
