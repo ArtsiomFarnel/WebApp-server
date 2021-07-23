@@ -33,3 +33,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: docker build webapp
         run: docker build . -t leeqviz/web_app
+      - name: docker push webapp
+        run: docker push leeqviz/web_app:latest
