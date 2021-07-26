@@ -11,6 +11,7 @@ namespace WebApp.Data.Configurations
     {
         //
         //
+        //
         public void Configure(EntityTypeBuilder<User> builder)
         {
             //builder.HasData();
