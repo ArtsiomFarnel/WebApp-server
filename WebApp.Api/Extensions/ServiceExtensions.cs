@@ -145,12 +145,14 @@ namespace WebApp.Api.Extensions
                 s.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "test_api_v1",
-                    Version = "v1"
+                    Version = "v1",
+                    Description = "with auth"
                 });
                 s.SwaggerDoc("v2", new OpenApiInfo
                 {
                     Title = "test_api_v2",
-                    Version = "v2"
+                    Version = "v2",
+                    Description = "with no auth"
                 });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
