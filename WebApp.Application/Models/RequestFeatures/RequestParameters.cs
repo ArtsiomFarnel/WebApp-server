@@ -6,9 +6,9 @@ namespace WebApp.Application.Models.RequestFeatures
 {
     public abstract class RequestParameters
     {
-        const int maxPageSize = 10;
+        const int maxPageSize = int.MaxValue;
         public int PageNumber { get; set; } = 1;
-        private int _pageSize = 5;
+        private int _pageSize = 20;
         public int PageSize
         {
             get
