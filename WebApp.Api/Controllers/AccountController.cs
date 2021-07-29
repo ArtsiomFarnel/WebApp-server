@@ -68,7 +68,15 @@ namespace WebApp.Api.Controllers
             }
             
             await _userManager.AddToRolesAsync(user, userRegistration.Roles);
-            return StatusCode(201);
+
+            var userAuth = _mapper.Map<UserAuthenticationDto>(userRegistration);
+            if (!await _authManager.ValidateUser(userAuth))
+            {
+                _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong user name or password.");
+                return Unauthorized();
+            }
+            return Ok(new { Token = await _authManager.CreateToken() });
+            //return StatusCode(201);
         }
 
         /// <summary>

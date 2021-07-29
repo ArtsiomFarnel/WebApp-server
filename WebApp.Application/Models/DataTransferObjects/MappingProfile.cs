@@ -18,6 +18,7 @@ namespace WebApp.Application.Models.DataTransferObjects
         public MappingProfile()
         {
             CreateMap<UserRegistrationDto, User>();
+            CreateMap<UserRegistrationDto, UserAuthenticationDto>();
 
             CreateMap<Product, ProductFullInfoDto>()
                 .ForMember(p => p.Category, opt => opt.MapFrom(x => x.Category.Name))
