@@ -15,5 +15,8 @@ namespace WebApp.Application.Models.RequestFeatures.Product
         public float MaxCost { get; set; } = float.MaxValue;
 
         public string Currency { get; set; } = "EUR";
+
+        public int CategoryId { get; set; } = 0;
+        public int ProviderId { get; set; } = 0;
     }
 }

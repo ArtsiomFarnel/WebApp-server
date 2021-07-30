@@ -34,6 +34,8 @@ namespace WebApp.Application.Abstractions.Repositories
         public async Task<PagedList<Product>> GetAllProductsAsync(ProductParameters param, bool trackChanges)
         {
             var products = await GetAll(trackChanges)
+                .FilterProductsByCategoryId(param.CategoryId)
+                .FilterProductsByProviderId(param.ProviderId)
                 .Include(p => p.Provider)
                 .Include(p => p.Category)
                 .SearchProduct(param.SearchTerm)
@@ -107,6 +109,20 @@ namespace WebApp.Application.Abstractions.Repositories
                 Id = p.Id,
                 Cost = p.Cost * (float)coef
             });
+        }
+
+        public static IQueryable<Product> FilterProductsByProviderId(this IQueryable<Product> products, int providerId)
+        {
+            if (providerId != 0)
+                products = products.Where(p => p.ProviderId == providerId);
+            return products;
+        }
+
+        public static IQueryable<Product> FilterProductsByCategoryId(this IQueryable<Product> products, int categoryId)
+        {
+            if (categoryId != 0)
+                products = products.Where(p => p.CategoryId == categoryId);
+            return products;
         }
     }
 }
