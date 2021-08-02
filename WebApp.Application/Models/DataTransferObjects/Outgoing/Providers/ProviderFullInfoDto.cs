@@ -7,6 +7,7 @@ namespace WebApp.Application.Models.DataTransferObjects.Outgoing.Providers
 {
     public class ProviderFullInfoDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public IEnumerable<ProductFullInfoDto> Products { get; set; }
     }
