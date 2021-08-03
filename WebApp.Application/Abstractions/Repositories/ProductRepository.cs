@@ -82,7 +82,12 @@ namespace WebApp.Application.Abstractions.Repositories
 
         public static IQueryable<Product> ExchangeCurrencyProduct(this IQueryable<Product> products, string currency)
         {
-            string json_result = new WebClient().DownloadString("http://api.exchangeratesapi.io/v1/latest?access_key=e294ee9b31301144bd13142b3ed636ff&format=1");
+            string json_result = string.Empty;
+            using (WebClient client = new WebClient())
+            {
+                json_result = client.DownloadString("http://api.exchangeratesapi.io/v1/latest?access_key=e294ee9b31301144bd13142b3ed636ff&format=1");
+            }
+
             if (json_result == null)
             {
                 return products;
