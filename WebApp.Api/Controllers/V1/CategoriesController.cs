@@ -55,7 +55,7 @@ namespace WebApp.Api.Controllers.V1
 
                 var result = _mapper.Map<IEnumerable<CategoryFullInfoDto>>(categories);
 
-                return Ok(_dataShaper.ShapeData(result, param.Fields));
+                return Ok(new { categories = _dataShaper.ShapeData(result, param.Fields), pagination = categories.MetaData });
             }
             catch (Exception ex)
             {

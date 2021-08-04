@@ -50,11 +50,11 @@ namespace WebApp.Api.Controllers.V2
             try
             {
                 var products = await _repository.Products.GetAllProductsAsync(param, false);
-                Response.Headers.Add("Pagination", JsonConvert.SerializeObject(products.MetaData));
+                Response.Headers.Add("pagination", JsonConvert.SerializeObject(products.MetaData));
 
                 var result = _mapper.Map<IEnumerable<ProductFullInfoDto>>(products);
 
-                return Ok(new { Products = _dataShaper.ShapeData(result, param.Fields), Pagination = products.MetaData });
+                return Ok(new { products = _dataShaper.ShapeData(result, param.Fields), pagination = products.MetaData });
             }
             catch (Exception ex)
             {

@@ -52,7 +52,7 @@ namespace WebApp.Api.Controllers.V2
 
                 var result = _mapper.Map<IEnumerable<ProviderFullInfoDto>>(providers);
 
-                return Ok(_dataShaper.ShapeData(result, param.Fields));
+                return Ok(new { providers = _dataShaper.ShapeData(result, param.Fields), pagination = providers.MetaData });
             }
             catch (Exception ex)
             {

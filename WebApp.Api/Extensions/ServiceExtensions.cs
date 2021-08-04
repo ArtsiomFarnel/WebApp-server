@@ -61,7 +61,8 @@ namespace WebApp.Api.Extensions
                 options.AddPolicy("CorsPolicy", builder =>
                 builder.AllowAnyOrigin()
                 .AllowAnyMethod()
-                .AllowAnyHeader());
+                .AllowAnyHeader()
+                .WithExposedHeaders("pagination"));
             });
 
         public static void ConfigureIISIntegration(this IServiceCollection services) =>
