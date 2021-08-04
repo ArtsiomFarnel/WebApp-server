@@ -8,7 +8,7 @@ namespace WebApp.Application.Models.RequestFeatures
     {
         const int maxPageSize = int.MaxValue;
         public int PageNumber { get; set; } = 1;
-        private int _pageSize = 20;
+        private int _pageSize = 8;
         public int PageSize
         {
             get

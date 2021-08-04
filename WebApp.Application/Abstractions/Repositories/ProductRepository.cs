@@ -39,7 +39,7 @@ namespace WebApp.Application.Abstractions.Repositories
                 .Include(p => p.Provider)
                 .Include(p => p.Category)
                 .SearchProduct(param.SearchTerm)
-                .ExchangeCurrencyProduct(param.Currency)
+                //.ExchangeCurrencyProduct(param.Currency)
                 .FilterProductByCost(param.MinCost, param.MaxCost)
                 .SortProduct(param.OrderBy)
                 .ToListAsync();
