@@ -72,7 +72,7 @@ namespace WebApp.Api.Controllers.V1
         /// <param name="id"></param>
         /// <param name="fields"></param>
         /// <returns>A product</returns>
-        [HttpGet("get_product")]
+        [HttpGet("get_product/{id}")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Product>))]
         public async Task<IActionResult> GetProduct(int? id, string fields)
         {
@@ -123,7 +123,7 @@ namespace WebApp.Api.Controllers.V1
         /// <param name="id"></param>
         /// <returns>Deleted product</returns>
         [Authorize(Roles = "Administrator")]
-        [HttpDelete("delete_product")]
+        [HttpDelete("delete_product/{id}")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Product>))]
         public async Task<IActionResult> DeleteProduct(int? id)
         {
@@ -150,7 +150,7 @@ namespace WebApp.Api.Controllers.V1
         /// <param name="productUp"></param>
         /// <returns>Updated product</returns>
         [Authorize(Roles = "Administrator")]
-        [HttpPut("update_product")]
+        [HttpPut("update_product/{id}")]
         [ServiceFilter(typeof(ValidationActionFilter))]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Product>))]
         public async Task<IActionResult> UpdateProduct(int? id, [FromBody] ProductUpdateDto productUp)
@@ -178,7 +178,7 @@ namespace WebApp.Api.Controllers.V1
         /// <param name="patchDoc"></param>
         /// <returns>Partialy updated product</returns>
         [Authorize(Roles = "Administrator")]
-        [HttpPatch("partially_update_product")]
+        [HttpPatch("partially_update_product/{id}")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Product>))]
         public async Task<IActionResult> PartiallyUpdateProduct(int? id, [FromBody] JsonPatchDocument<ProductUpdateDto> patchDoc)
         {

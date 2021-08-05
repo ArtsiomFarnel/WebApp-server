@@ -70,7 +70,7 @@ namespace WebApp.Api.Controllers.V1
         /// <param name="id"></param>
         /// <param name="fields"></param>
         /// <returns>A category</returns>
-        [HttpGet("get_category")]
+        [HttpGet("get_category/{id}")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Category>))]
         public async Task<IActionResult> GetCategory(int? id, string fields)
         {
@@ -121,7 +121,7 @@ namespace WebApp.Api.Controllers.V1
         /// <param name="id"></param>
         /// <returns>Deleted category</returns>
         [Authorize(Roles = "Administrator")]
-        [HttpDelete("delete_category")]
+        [HttpDelete("delete_category/{id}")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Category>))]
         public async Task<IActionResult> DeleteCategory(int? id)
         {
@@ -148,7 +148,7 @@ namespace WebApp.Api.Controllers.V1
         /// <param name="categoryUp"></param>
         /// <returns>Updated category</returns>
         [Authorize(Roles = "Administrator")]
-        [HttpPut("update_category")]
+        [HttpPut("update_category/{id}")]
         [ServiceFilter(typeof(ValidationActionFilter))]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Category>))]
         public async Task<IActionResult> UpdateCategory(int? id, [FromBody] CategoryUpdateDto categoryUp)
@@ -176,7 +176,7 @@ namespace WebApp.Api.Controllers.V1
         /// <param name="patchDoc"></param>
         /// <returns>Partially updated category</returns>
         [Authorize(Roles = "Administrator")]
-        [HttpPatch("partially_update_category")]
+        [HttpPatch("partially_update_category/{id}")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Category>))]
         public async Task<IActionResult> PartiallyUpdateCategory(int? id, [FromBody] JsonPatchDocument<CategoryUpdateDto> patchDoc)
         {

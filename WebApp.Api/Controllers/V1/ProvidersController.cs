@@ -70,7 +70,7 @@ namespace WebApp.Api.Controllers.V1
         /// <param name="id"></param>
         /// <param name="fields"></param>
         /// <returns>A provider</returns>
-        [HttpGet("get_provider")]
+        [HttpGet("get_provider/{id}")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Provider>))]
         public async Task<IActionResult> GetProvider(int? id, string fields)
         {
@@ -121,7 +121,7 @@ namespace WebApp.Api.Controllers.V1
         /// <param name="id"></param>
         /// <returns>Deleted provider</returns>
         [Authorize(Roles = "Administrator")]
-        [HttpDelete("delete_provider")]
+        [HttpDelete("delete_provider/{id}")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Provider>))]
         public async Task<IActionResult> DeleteProvider(int? id)
         {
@@ -148,7 +148,7 @@ namespace WebApp.Api.Controllers.V1
         /// <param name="providerUp"></param>
         /// <returns>Updated provider</returns>
         [Authorize(Roles = "Administrator")]
-        [HttpPut("update_provider")]
+        [HttpPut("update_provider/{id}")]
         [ServiceFilter(typeof(ValidationActionFilter))]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Provider>))]
         public async Task<IActionResult> UpdateProvider(int? id, [FromBody] ProviderUpdateDto providerUp)
@@ -176,7 +176,7 @@ namespace WebApp.Api.Controllers.V1
         /// <param name="patchDoc"></param>
         /// <returns>Partialy updated provider</returns>
         [Authorize(Roles = "Administrator")]
-        [HttpPatch("partially_update_provider")]
+        [HttpPatch("partially_update_provider/{id}")]
         [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Provider>))]
         public async Task<IActionResult> PartiallyUpdateProvider(int? id, [FromBody] JsonPatchDocument<ProviderUpdateDto> patchDoc)
         {
