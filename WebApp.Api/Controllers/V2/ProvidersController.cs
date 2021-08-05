@@ -48,7 +48,7 @@ namespace WebApp.Api.Controllers.V2
             try
             {
                 var providers = await _repository.Providers.GetAllProvidersAsync(param, false);
-                Response.Headers.Add("Pagination", JsonConvert.SerializeObject(providers.MetaData));
+                Response.Headers.Add("pagination", JsonConvert.SerializeObject(providers.MetaData));
 
                 var result = _mapper.Map<IEnumerable<ProviderFullInfoDto>>(providers);
 

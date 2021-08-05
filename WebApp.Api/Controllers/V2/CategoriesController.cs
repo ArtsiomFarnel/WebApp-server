@@ -49,7 +49,7 @@ namespace WebApp.Api.Controllers.V2
             try
             {
                 var categories = await _repository.Categories.GetAllCategoriesAsync(param, false);
-                Response.Headers.Add("Pagination", JsonConvert.SerializeObject(categories.MetaData));
+                Response.Headers.Add("pagination", JsonConvert.SerializeObject(categories.MetaData));
 
                 var result = _mapper.Map<IEnumerable<CategoryFullInfoDto>>(categories);
 
