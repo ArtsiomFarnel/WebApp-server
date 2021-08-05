@@ -54,7 +54,7 @@ namespace WebApp.Api.Controllers.V2
 
                 var result = _mapper.Map<IEnumerable<ProductFullInfoDto>>(products);
 
-                return Ok(new { products = _dataShaper.ShapeData(result, param.Fields), pagination = products.MetaData });
+                return Ok(_dataShaper.ShapeData(result, param.Fields));
             }
             catch (Exception ex)
             {
