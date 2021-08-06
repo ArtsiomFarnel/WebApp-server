@@ -18,6 +18,12 @@
             <param name="user"></param>
             <returns>Authenticated user</returns>
         </member>
+        <member name="M:WebApp.Api.Controllers.AccountController.GetUserData">
+            <summary>
+            Get user data
+            </summary>
+            <returns>Authenticated user</returns>
+        </member>
         <member name="M:WebApp.Api.Controllers.V1.CategoriesController.GetAllCategories(WebApp.Application.Models.RequestFeatures.Category.CategoryParameters)">
             <summary>
             Gets all categories

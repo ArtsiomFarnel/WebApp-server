@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -93,6 +94,18 @@ namespace WebApp.Api.Controllers
                 return Unauthorized();
             }
             return Ok(new { Token = await _authManager.CreateToken() });
+        }
+
+        /// <summary>
+        /// Get user data
+        /// </summary>
+        /// <returns>Authenticated user</returns>
+        [Authorize]
+        [HttpGet("get_user_data")]
+        public async Task<IActionResult> GetUserData()
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            return Ok(user);
         }
 
     }
