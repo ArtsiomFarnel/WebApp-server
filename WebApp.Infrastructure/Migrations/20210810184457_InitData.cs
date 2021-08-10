@@ -42,7 +42,8 @@ namespace Infrastructure.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(maxLength: 20, nullable: true),
-                    LastName = table.Column<string>(maxLength: 20, nullable: true)
+                    LastName = table.Column<string>(maxLength: 20, nullable: true),
+                    ImagePath = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -190,6 +191,7 @@ namespace Infrastructure.Migrations
                     Name = table.Column<string>(maxLength: 20, nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Cost = table.Column<float>(nullable: false),
+                    ImagePath = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
                     ProviderId = table.Column<int>(nullable: false)
                 },
@@ -215,9 +217,9 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "aeb8833e-4796-474c-90ff-b0cb9e76dae1", "b2a8c466-450a-41c5-9ead-1ff108e98333", "Role", "Manager", "MANAGER" },
-                    { "f5493463-8b4c-4138-8932-3c6115a31f66", "300c9f34-4f65-4033-88c7-cf1ad213c072", "Role", "Administrator", "ADMINISTRATOR" },
-                    { "35066c5e-d490-4b0f-9322-d232e9bda968", "9b565b1a-9fdb-4e45-9c42-06823fbb55ed", "Role", "Client", "CLIENT" }
+                    { "f83256e3-04d6-4984-a4ec-c0261b4b3c3b", "63d96b29-d841-4857-91c3-30c525d206f6", "Role", "Manager", "MANAGER" },
+                    { "e6afe7cb-81c0-4525-8fb3-e60f98d897b6", "d8354797-28e7-4a2b-bc13-101365663804", "Role", "Administrator", "ADMINISTRATOR" },
+                    { "d9fd0e21-2f09-4d5e-af63-067c8782e6c7", "b9069f7b-284b-490e-8bd2-87a0cc7f4106", "Role", "Client", "CLIENT" }
                 });
 
             migrationBuilder.InsertData(
@@ -246,24 +248,24 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "CategoryId", "Cost", "Description", "Name", "ProviderId" },
+                columns: new[] { "Id", "CategoryId", "Cost", "Description", "ImagePath", "Name", "ProviderId" },
                 values: new object[,]
                 {
-                    { 1, 1, 1.1f, "test_description_1", "test_product_1", 1 },
-                    { 2, 1, 2.1f, "test_description_2", "test_product_2", 1 },
-                    { 3, 1, 1.6f, "test_description_3", "test_product_3", 1 },
-                    { 4, 1, 16.15f, "test_description_4", "test_product_4", 1 },
-                    { 5, 1, 11.11f, "test_description_5", "test_product_5", 1 },
-                    { 6, 2, 14.17f, "test_description_6", "test_product_6", 2 },
-                    { 7, 2, 5.5f, "test_description_7", "test_product_7", 2 },
-                    { 8, 2, 71.11f, "test_description_8", "test_product_8", 2 },
-                    { 9, 2, 10.06f, "test_description_9", "test_product_9", 2 },
-                    { 10, 3, 0.01f, "test_description_10", "test_product_10", 3 },
-                    { 11, 3, 113.56f, "test_description_11", "test_product_11", 3 },
-                    { 12, 3, 4.7f, "test_description_12", "test_product_12", 3 },
-                    { 13, 4, 167.9f, "test_description_13", "test_product_13", 4 },
-                    { 14, 4, 6.66f, "test_description_14", "test_product_14", 4 },
-                    { 15, 5, 9.99f, "test_description_15", "test_product_15", 5 }
+                    { 1, 1, 1.1f, "test_description_1", null, "test_product_1", 1 },
+                    { 2, 1, 2.1f, "test_description_2", null, "test_product_2", 1 },
+                    { 3, 1, 1.6f, "test_description_3", null, "test_product_3", 1 },
+                    { 4, 1, 16.15f, "test_description_4", null, "test_product_4", 1 },
+                    { 5, 1, 11.11f, "test_description_5", null, "test_product_5", 1 },
+                    { 6, 2, 14.17f, "test_description_6", null, "test_product_6", 2 },
+                    { 7, 2, 5.5f, "test_description_7", null, "test_product_7", 2 },
+                    { 8, 2, 71.11f, "test_description_8", null, "test_product_8", 2 },
+                    { 9, 2, 10.06f, "test_description_9", null, "test_product_9", 2 },
+                    { 10, 3, 0.01f, "test_description_10", null, "test_product_10", 3 },
+                    { 11, 3, 113.56f, "test_description_11", null, "test_product_11", 3 },
+                    { 12, 3, 4.7f, "test_description_12", null, "test_product_12", 3 },
+                    { 13, 4, 167.9f, "test_description_13", null, "test_product_13", 4 },
+                    { 14, 4, 6.66f, "test_description_14", null, "test_product_14", 4 },
+                    { 15, 5, 9.99f, "test_description_15", null, "test_product_15", 5 }
                 });
 
             migrationBuilder.CreateIndex(

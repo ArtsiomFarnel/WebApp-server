@@ -15,6 +15,7 @@ namespace WebApp.Data.Entities
         [Required(ErrorMessage = "Field Cost is required")]
         [Range(0, int.MaxValue, ErrorMessage = "Cost is required and it can't be lower than 0")]
         public float Cost { get; set; }
+        public string ImagePath { get; set; }
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }

@@ -13,5 +13,6 @@ namespace WebApp.Data.Entities
 
         [MaxLength(20, ErrorMessage = "Maximum length for the Name is 20 characters")]
         public string LastName { get; set; }
+        public string ImagePath { get; set; }
     }
 }

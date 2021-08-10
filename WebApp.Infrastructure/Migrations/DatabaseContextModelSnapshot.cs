@@ -219,6 +219,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)")
@@ -443,6 +446,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
@@ -502,22 +508,22 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "aeb8833e-4796-474c-90ff-b0cb9e76dae1",
-                            ConcurrencyStamp = "b2a8c466-450a-41c5-9ead-1ff108e98333",
+                            Id = "f83256e3-04d6-4984-a4ec-c0261b4b3c3b",
+                            ConcurrencyStamp = "63d96b29-d841-4857-91c3-30c525d206f6",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "f5493463-8b4c-4138-8932-3c6115a31f66",
-                            ConcurrencyStamp = "300c9f34-4f65-4033-88c7-cf1ad213c072",
+                            Id = "e6afe7cb-81c0-4525-8fb3-e60f98d897b6",
+                            ConcurrencyStamp = "d8354797-28e7-4a2b-bc13-101365663804",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "35066c5e-d490-4b0f-9322-d232e9bda968",
-                            ConcurrencyStamp = "9b565b1a-9fdb-4e45-9c42-06823fbb55ed",
+                            Id = "d9fd0e21-2f09-4d5e-af63-067c8782e6c7",
+                            ConcurrencyStamp = "b9069f7b-284b-490e-8bd2-87a0cc7f4106",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
