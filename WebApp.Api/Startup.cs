@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 using WebApp.Api.Extensions;
 
 namespace WebApp.Api
-{//барбарики
+{
     public class Startup
     {
         public IConfiguration Configuration { get; }
@@ -16,7 +16,7 @@ namespace WebApp.Api
         {
             Configuration = configuration;
         }
-        //мы белорусы мирные люди
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -66,7 +66,7 @@ namespace WebApp.Api
             {
                 endpoints.MapControllers();
             });
-            //сэрдцам адданы€ роднай з€мли
+
             // swagger
             app.UseSwagger();
             app.UseSwaggerUI(s =>

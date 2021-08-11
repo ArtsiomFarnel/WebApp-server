@@ -95,7 +95,7 @@ namespace WebApp.Api.Extensions
             LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             services.AddScoped<ILoggerManager, LoggerManager>();
         }
-        //three hundred bucks
+
         public static void ConfigureDataShaper(this IServiceCollection services)
         {
             services.AddScoped<IDataShaper<ProductFullInfoDto>, DataShaper<ProductFullInfoDto>>();
@@ -139,7 +139,7 @@ namespace WebApp.Api.Extensions
                     };
                 });
         }
-        //boy next door
+
         public static void ConfigureSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(s =>
@@ -188,4 +188,3 @@ namespace WebApp.Api.Extensions
         }
     }
 }
-//ыаовааоавао абоба

@@ -43,7 +43,6 @@ namespace WebApp.Api.Filters
             var entity = _context.Set<T>().SingleOrDefault(x => x.Id == id);
             if (entity == null)
             {
-        
                 _logger.LogError("No entity found");
                 context.Result = new NotFoundResult();
             }

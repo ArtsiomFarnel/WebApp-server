@@ -43,6 +43,7 @@
   <ItemGroup>
     <Folder Include="Logs\" />
     <Folder Include="Logs\internal_logs\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 
 
