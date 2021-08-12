@@ -24,6 +24,12 @@
             </summary>
             <returns>Authenticated user</returns>
         </member>
+        <member name="M:WebApp.Api.Controllers.AccountController.ChangeUserData(Application.Models.DataTransferObjects.Incoming.Users.UserChangeProfileDto)">
+            <summary>
+            Change user data
+            </summary>
+            <returns>No content</returns>
+        </member>
         <member name="M:WebApp.Api.Controllers.V1.CategoriesController.GetAllCategories(WebApp.Application.Models.RequestFeatures.Category.CategoryParameters)">
             <summary>
             Gets all categories

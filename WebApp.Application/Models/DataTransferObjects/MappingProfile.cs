@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using Application.Models.DataTransferObjects.Incoming.Users;
+using Application.Models.DataTransferObjects.Outgoing.Users;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +21,8 @@ namespace WebApp.Application.Models.DataTransferObjects
         {
             CreateMap<UserRegistrationDto, User>();
             CreateMap<UserRegistrationDto, UserAuthenticationDto>();
+            CreateMap<User, UserFullInfoDto>();
+            CreateMap<UserChangeProfileDto, User>();
 
             CreateMap<Product, ProductFullInfoDto>()
                 .ForMember(p => p.Category, opt => opt.MapFrom(x => x.Category.Name))

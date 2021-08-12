@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using Application.Models.DataTransferObjects.Incoming.Users;
+using Application.Models.DataTransferObjects.Outgoing.Users;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -103,6 +105,27 @@ namespace WebApp.Api.Controllers
         [Authorize]
         [HttpGet("get_user_data")]
         public async Task<IActionResult> GetUserData()
+        {
+            try
+            {
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                var userData = _mapper.Map<UserFullInfoDto>(user);
+                return Ok(userData);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the {nameof(GetUserData)} action {ex} ");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        /// <summary>
+        /// Change user data
+        /// </summary>
+        /// <returns>No content</returns>
+        [Authorize]
+        [HttpPost("change_user_data")]
+        public async Task<IActionResult> ChangeUserData([FromBody] UserChangeProfileDto userData)
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             return Ok(user);
