@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp.Api.Filters;
 using WebApp.Application.Abstractions;
 using WebApp.Application.Interfaces;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Baskets;
@@ -52,7 +53,7 @@ namespace WebApp.Api.Controllers.V1
             try
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
-
+                 
                 var basket = await _repository.Baskets.GetAllBasketItemsAsync(param, false, user.Id);
                 Response.Headers.Add("pagination", JsonConvert.SerializeObject(basket.MetaData));
 
@@ -63,6 +64,73 @@ namespace WebApp.Api.Controllers.V1
             catch (Exception ex)
             {
                 _logger.LogError($"Something went wrong in the {nameof(GetBasket)} action {ex} ");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        /// <summary>
+        /// Adds new item to basket items list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Ok</returns>
+        [Authorize(Roles = "Client")]
+        [HttpGet("add_to_basket/{id}")]
+        [ServiceFilter(typeof(ValidationActionFilter))]
+        public async Task<IActionResult> AddToBasket(int? id)
+        {
+            try
+            {
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                var basketItem = await _repository.Baskets.GetBasketItemsByIdAsync((int)id, true, user.Id);
+                if (basketItem != null) 
+                {
+                    basketItem.Amount++;
+                }
+                else
+                {
+                    var newbasketItem = new Basket
+                    {
+                        UserId = user.Id,
+                        ProductId = (int)id,
+                        Amount = 1
+                    };
+
+                    _repository.Baskets.Create(newbasketItem);
+                }
+                await _repository.SaveAsync();
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the {nameof(AddToBasket)} action {ex} ");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        /// <summary>
+        /// Removes item from basket
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>No content</returns>
+        [Authorize(Roles = "Client")]
+        [HttpDelete("remove_from_basket/{id}")]
+        [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Basket>))]
+        public async Task<IActionResult> RemoveFromBasket(int? id)
+        {
+            try
+            {
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                var basketItem = await _repository.Baskets.GetBasketItemsByIdAsync((int)id, true, user.Id);
+
+                _repository.Baskets.Delete(basketItem);
+                await _repository.SaveAsync();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the {nameof(RemoveFromBasket)} action {ex} ");
                 return StatusCode(500, "Internal server error");
             }
         }

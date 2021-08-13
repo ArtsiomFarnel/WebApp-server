@@ -45,6 +45,7 @@ namespace WebApp.Api.Extensions
             services.AddScoped<ValidateEntityExistsActionFilter<Product>>();
             services.AddScoped<ValidateEntityExistsActionFilter<Category>>();
             services.AddScoped<ValidateEntityExistsActionFilter<Provider>>();
+            services.AddScoped<ValidateEntityExistsActionFilter<Basket>>();
         }
 
         public static void ConfigureVersioning(this IServiceCollection services) =>

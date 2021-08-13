@@ -36,6 +36,20 @@
             </summary>
             <returns>The basket items list</returns>
         </member>
+        <member name="M:WebApp.Api.Controllers.V1.BasketsController.AddToBasket(System.Nullable{System.Int32})">
+            <summary>
+            Adds new item to basket items list
+            </summary>
+            <param name="id"></param>
+            <returns>Ok</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.BasketsController.RemoveFromBasket(System.Nullable{System.Int32})">
+            <summary>
+            Removes item from basket
+            </summary>
+            <param name="id"></param>
+            <returns>No content</returns>
+        </member>
         <member name="M:WebApp.Api.Controllers.V1.CategoriesController.GetAllCategories(WebApp.Application.Models.RequestFeatures.Category.CategoryParameters)">
             <summary>
             Gets all categories
@@ -176,6 +190,20 @@
             Gets the basket of current user
             </summary>
             <returns>The basket items list</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V2.BasketsController.AddToBasket(System.Nullable{System.Int32})">
+            <summary>
+            Adds new item to basket items list
+            </summary>
+            <param name="id"></param>
+            <returns>Ok</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V2.BasketsController.RemoveFromBasket(System.Nullable{System.Int32})">
+            <summary>
+            Removes item from basket
+            </summary>
+            <param name="id"></param>
+            <returns>No content</returns>
         </member>
         <member name="M:WebApp.Api.Controllers.V2.CategoriesController.GetAllCategories(WebApp.Application.Models.RequestFeatures.Category.CategoryParameters)">
             <summary>
