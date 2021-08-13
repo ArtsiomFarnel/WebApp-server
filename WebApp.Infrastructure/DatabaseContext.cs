@@ -24,10 +24,12 @@ namespace WebApp.Infrastructure
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new BasketConfiguration());
         }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
     }
 }
