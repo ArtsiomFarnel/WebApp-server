@@ -24,11 +24,17 @@
             </summary>
             <returns>Authenticated user</returns>
         </member>
-        <member name="M:WebApp.Api.Controllers.AccountController.ChangeUserData(Application.Models.DataTransferObjects.Incoming.Users.UserChangeProfileDto)">
+        <member name="M:WebApp.Api.Controllers.AccountController.ChangeUserData(WebApp.Application.Models.DataTransferObjects.Incoming.Users.UserChangeProfileDto)">
             <summary>
             Change user data
             </summary>
             <returns>No content</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V1.BasketsController.GetBasket(WebApp.Application.Models.RequestFeatures.Baskets.BasketParameters)">
+            <summary>
+            Gets the basket of current user
+            </summary>
+            <returns>The basket items list</returns>
         </member>
         <member name="M:WebApp.Api.Controllers.V1.CategoriesController.GetAllCategories(WebApp.Application.Models.RequestFeatures.Category.CategoryParameters)">
             <summary>
@@ -164,6 +170,12 @@
             <param name="id"></param>
             <param name="patchDoc"></param>
             <returns>Partialy updated provider</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V2.BasketsController.GetBasket(WebApp.Application.Models.RequestFeatures.Baskets.BasketParameters)">
+            <summary>
+            Gets the basket of current user
+            </summary>
+            <returns>The basket items list</returns>
         </member>
         <member name="M:WebApp.Api.Controllers.V2.CategoriesController.GetAllCategories(WebApp.Application.Models.RequestFeatures.Category.CategoryParameters)">
             <summary>

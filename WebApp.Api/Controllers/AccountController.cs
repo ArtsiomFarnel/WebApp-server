@@ -1,6 +1,4 @@
-﻿using Application.Models.DataTransferObjects.Incoming.Users;
-using Application.Models.DataTransferObjects.Outgoing.Users;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Application.Interfaces;
 using WebApp.Application.Models.DataTransferObjects.Incoming.Users;
+using WebApp.Application.Models.DataTransferObjects.Outgoing.Users;
 using WebApp.Data.Entities;
 
 namespace WebApp.Api.Controllers

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Application.Models.DataTransferObjects.Outgoing.Users
+namespace WebApp.Application.Models.DataTransferObjects.Outgoing.Users
 {
     public class UserFullInfoDto
     {

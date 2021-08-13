@@ -8,6 +8,7 @@ namespace WebApp.Data.Entities
 {
     public class User : IdentityUser
     {
+        public static object Identity { get; set; }
         [MaxLength(20, ErrorMessage = "Maximum length for the Name is 20 characters")]
         public string FirstName { get; set; }
 

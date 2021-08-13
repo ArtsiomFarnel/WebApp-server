@@ -24,9 +24,7 @@
   <ItemGroup>
     <Folder Include="Models\DataTransferObjects\Incoming\Baskets\" />
     <Folder Include="Models\DataTransferObjects\Incoming\Roles\" />
-    <Folder Include="Models\DataTransferObjects\Outgoing\Baskets\" />
     <Folder Include="Models\DataTransferObjects\Outgoing\Roles\" />
-    <Folder Include="Models\RequestFeatures\Baskets\" />
     <Folder Include="Models\RequestFeatures\Roles\" />
   </ItemGroup>
 

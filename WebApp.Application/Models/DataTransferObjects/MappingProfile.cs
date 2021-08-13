@@ -1,16 +1,13 @@
-﻿using Application.Models.DataTransferObjects.Incoming.Users;
-using Application.Models.DataTransferObjects.Outgoing.Users;
-using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AutoMapper;
 using WebApp.Application.Models.DataTransferObjects.Incoming.Categories;
 using WebApp.Application.Models.DataTransferObjects.Incoming.Products;
 using WebApp.Application.Models.DataTransferObjects.Incoming.Providers;
 using WebApp.Application.Models.DataTransferObjects.Incoming.Users;
+using WebApp.Application.Models.DataTransferObjects.Outgoing.Baskets;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Categories;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Products;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Providers;
+using WebApp.Application.Models.DataTransferObjects.Outgoing.Users;
 using WebApp.Data.Entities;
 
 namespace WebApp.Application.Models.DataTransferObjects
@@ -51,6 +48,11 @@ namespace WebApp.Application.Models.DataTransferObjects
             CreateMap<ProviderUpdateDto, Provider>()
                 .ForMember(p => p.Products, opt => opt.Ignore());
             CreateMap<Provider, ProviderUpdateDto>();
+
+            CreateMap<Basket, BasketItemFullInfoDto>()
+                .ForMember(p => p.ProductName, opt => opt.MapFrom(x => x.Product.Name))
+                .ForMember(p => p.ProductImagePath, opt => opt.MapFrom(x => x.Product.ImagePath))
+                .ForMember(p => p.ProductCost, opt => opt.MapFrom(x => x.Product.Cost));
         }
     }
 }

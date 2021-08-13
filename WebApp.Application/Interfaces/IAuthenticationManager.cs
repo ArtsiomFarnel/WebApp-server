@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using WebApp.Application.Models.DataTransferObjects.Incoming.Users;
+using WebApp.Data.Entities;
 
 namespace WebApp.Application.Interfaces
 {

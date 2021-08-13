@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Application.Models.DataTransferObjects.Incoming.Users
+namespace WebApp.Application.Models.DataTransferObjects.Incoming.Users
 {
     public class UserChangeProfileDto
     {

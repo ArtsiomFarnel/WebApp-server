@@ -18,6 +18,7 @@ using WebApp.Api.Filters;
 using WebApp.Application.Abstractions;
 using WebApp.Application.Interfaces;
 using WebApp.Application.Models.DataTransferObjects;
+using WebApp.Application.Models.DataTransferObjects.Outgoing.Baskets;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Categories;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Products;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Providers;
@@ -101,6 +102,7 @@ namespace WebApp.Api.Extensions
             services.AddScoped<IDataShaper<ProductFullInfoDto>, DataShaper<ProductFullInfoDto>>();
             services.AddScoped<IDataShaper<CategoryFullInfoDto>, DataShaper<CategoryFullInfoDto>>();
             services.AddScoped<IDataShaper<ProviderFullInfoDto>, DataShaper<ProviderFullInfoDto>>();
+            services.AddScoped<IDataShaper<BasketItemFullInfoDto>, DataShaper<BasketItemFullInfoDto>>();
         }
         public static void ConfigureIdentity(this IServiceCollection services)
         {
