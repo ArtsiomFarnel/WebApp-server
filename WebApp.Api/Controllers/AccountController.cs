@@ -119,15 +119,24 @@ namespace WebApp.Api.Controllers
         }
 
         /// <summary>
-        /// Change user data
+        /// Get user role
         /// </summary>
-        /// <returns>No content</returns>
+        /// <returns>Roles of authenticated user</returns>
         [Authorize]
-        [HttpPost("change_user_data")]
-        public async Task<IActionResult> ChangeUserData([FromBody] UserChangeProfileDto userData)
+        [HttpGet("get_user_role")]
+        public async Task<IActionResult> GetUserRole()
         {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            return Ok(user);
+            try
+            {
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                var roles = await _userManager.GetRolesAsync(user);
+                return Ok(roles);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the {nameof(GetUserRole)} action {ex} ");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
     }

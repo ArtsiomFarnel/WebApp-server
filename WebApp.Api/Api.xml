@@ -24,11 +24,11 @@
             </summary>
             <returns>Authenticated user</returns>
         </member>
-        <member name="M:WebApp.Api.Controllers.AccountController.ChangeUserData(WebApp.Application.Models.DataTransferObjects.Incoming.Users.UserChangeProfileDto)">
+        <member name="M:WebApp.Api.Controllers.AccountController.GetUserRole">
             <summary>
-            Change user data
+            Get user role
             </summary>
-            <returns>No content</returns>
+            <returns>Roles of authenticated user</returns>
         </member>
         <member name="M:WebApp.Api.Controllers.V1.BasketsController.GetBasket(WebApp.Application.Models.RequestFeatures.Baskets.BasketParameters)">
             <summary>
