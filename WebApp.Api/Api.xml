@@ -15,7 +15,7 @@
             <summary>
             Authenticate a user
             </summary>
-            <param name="user"></param>
+            <param name="userAuthentication"></param>
             <returns>Authenticated user</returns>
         </member>
         <member name="M:WebApp.Api.Controllers.AccountController.GetUserData">
@@ -23,12 +23,6 @@
             Get user data
             </summary>
             <returns>Authenticated user</returns>
-        </member>
-        <member name="M:WebApp.Api.Controllers.AccountController.GetUserRole">
-            <summary>
-            Get user role
-            </summary>
-            <returns>Roles of authenticated user</returns>
         </member>
         <member name="M:WebApp.Api.Controllers.V1.BasketsController.GetBasket(WebApp.Application.Models.RequestFeatures.Baskets.BasketParameters)">
             <summary>

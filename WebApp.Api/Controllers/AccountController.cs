@@ -77,24 +77,41 @@ namespace WebApp.Api.Controllers
                 _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong user name or password.");
                 return Unauthorized();
             }
-            return Ok(new { Token = await _authManager.CreateToken() });
-            //return StatusCode(201);
+
+            var token = await _authManager.CreateToken();
+            var authUser = await _userManager.FindByNameAsync(userRegistration.UserName);
+            var roles = await _userManager.GetRolesAsync(authUser);
+
+            return Ok(new 
+            { 
+                Token = token, 
+                Roles = roles
+            });
         }
 
         /// <summary>
         /// Authenticate a user
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="userAuthentication"></param>
         /// <returns>Authenticated user</returns>
         [HttpPost("authenticate")]
-        public async Task<IActionResult> Authenticate([FromBody] UserAuthenticationDto user)
+        public async Task<IActionResult> Authenticate([FromBody] UserAuthenticationDto userAuthentication)
         {
-            if (!await _authManager.ValidateUser(user))
+            if (!await _authManager.ValidateUser(userAuthentication))
             {
                 _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong user name or password.");
                 return Unauthorized();
             }
-            return Ok(new { Token = await _authManager.CreateToken() });
+
+            var token = await _authManager.CreateToken();
+            var authUser = await _userManager.FindByNameAsync(userAuthentication.UserName);
+            var roles = await _userManager.GetRolesAsync(authUser);
+
+            return Ok(new 
+            { 
+                Token = token,
+                Roles = roles
+            });
         }
 
         /// <summary>
@@ -114,27 +131,6 @@ namespace WebApp.Api.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"Something went wrong in the {nameof(GetUserData)} action {ex} ");
-                return StatusCode(500, "Internal server error");
-            }
-        }
-
-        /// <summary>
-        /// Get user role
-        /// </summary>
-        /// <returns>Roles of authenticated user</returns>
-        [Authorize]
-        [HttpGet("get_user_role")]
-        public async Task<IActionResult> GetUserRole()
-        {
-            try
-            {
-                var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                var roles = await _userManager.GetRolesAsync(user);
-                return Ok(roles);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Something went wrong in the {nameof(GetUserRole)} action {ex} ");
                 return StatusCode(500, "Internal server error");
             }
         }
