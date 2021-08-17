@@ -75,7 +75,7 @@ namespace WebApp.Api.Controllers.V1
         /// <returns>Ok</returns>
         [Authorize(Roles = "Client")]
         [HttpGet("add_to_basket/{id}")]
-        [ServiceFilter(typeof(ValidationActionFilter))]
+        [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Product>))]
         public async Task<IActionResult> AddToBasket(int? id)
         {
             try
