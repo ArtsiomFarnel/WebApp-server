@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using WebApp.Api.Filters;
 using WebApp.Application.Abstractions;
 using WebApp.Application.Interfaces;
+using WebApp.Application.Models.DataTransferObjects.Incoming.Baskets;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Baskets;
 using WebApp.Application.Models.RequestFeatures.Baskets;
 using WebApp.Data.Entities;
@@ -129,6 +130,34 @@ namespace WebApp.Api.Controllers.V2
             catch (Exception ex)
             {
                 _logger.LogError($"Something went wrong in the {nameof(RemoveFromBasket)} action {ex} ");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+
+        /// <summary>
+        /// Change item amount
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="amountUp"></param>
+        /// <returns>Ok</returns>
+        [HttpPut("change_amount/{id}")]
+        [ServiceFilter(typeof(ValidateEntityExistsActionFilter<Basket>))]
+        public async Task<IActionResult> ChangeAmount(int? id, [FromBody] AmountUpdateDto amountUp)
+        {
+            try
+            {
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                var basketItem = await _repository.Baskets.GetBasketItemsByIdAsync((int)id, true, user.Id);
+
+                basketItem.Amount = amountUp.Amount;
+                await _repository.SaveAsync();
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the {nameof(ChangeAmount)} action {ex} ");
                 return StatusCode(500, "Internal server error");
             }
         }

@@ -44,6 +44,14 @@
             <param name="id"></param>
             <returns>No content</returns>
         </member>
+        <member name="M:WebApp.Api.Controllers.V1.BasketsController.ChangeAmount(System.Nullable{System.Int32},WebApp.Application.Models.DataTransferObjects.Incoming.Baskets.AmountUpdateDto)">
+            <summary>
+            Change item amount
+            </summary>
+            <param name="id"></param>
+            <param name="amountUp"></param>
+            <returns>Ok</returns>
+        </member>
         <member name="M:WebApp.Api.Controllers.V1.CategoriesController.GetAllCategories(WebApp.Application.Models.RequestFeatures.Category.CategoryParameters)">
             <summary>
             Gets all categories
@@ -198,6 +206,14 @@
             </summary>
             <param name="id"></param>
             <returns>No content</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.V2.BasketsController.ChangeAmount(System.Nullable{System.Int32},WebApp.Application.Models.DataTransferObjects.Incoming.Baskets.AmountUpdateDto)">
+            <summary>
+            Change item amount
+            </summary>
+            <param name="id"></param>
+            <param name="amountUp"></param>
+            <returns>Ok</returns>
         </member>
         <member name="M:WebApp.Api.Controllers.V2.CategoriesController.GetAllCategories(WebApp.Application.Models.RequestFeatures.Category.CategoryParameters)">
             <summary>
