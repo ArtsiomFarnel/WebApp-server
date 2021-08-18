@@ -16,8 +16,6 @@ using WebApp.Data.Entities;
 namespace WebApp.Api.Controllers
 {
     [ApiController]
-    //[ApiVersion("1.0")]
-    //[ApiExplorerSettings(GroupName = "v1")]
     [ApiVersionNeutral]
     [Route("account")]
     public class AccountController : ControllerBase
@@ -148,26 +146,34 @@ namespace WebApp.Api.Controllers
         [HttpDelete("delete_user")]
         public async Task<IActionResult> DeleteUser([FromBody] UserValidationDto userValid)
         {
-            var user = await _userManager.FindByNameAsync(userValid.UserName);
-
-            //delete basket
-            var p = new BasketParameters();
-            var basket = await _repository.Baskets.GetAllBasketItemsAsync(p, false, user.Id);
-            foreach (var b in basket)
-                _repository.Baskets.Delete(b);
-            await _repository.SaveAsync();
-
-            var result = await _userManager.DeleteAsync(user);
-
-            if (result.Succeeded == false)
+            try
             {
-                foreach (var error in result.Errors)
-                    ModelState.TryAddModelError(error.Code, error.Description);
+                var user = await _userManager.FindByNameAsync(userValid.UserName);
 
-                return BadRequest(ModelState);
+                //basket deleting
+                var p = new BasketParameters();
+                var basket = await _repository.Baskets.GetAllBasketItemsAsync(p, false, user.Id);
+                foreach (var b in basket)
+                    _repository.Baskets.Delete(b);
+                await _repository.SaveAsync();
+
+                var result = await _userManager.DeleteAsync(user);
+
+                if (result.Succeeded == false)
+                {
+                    foreach (var error in result.Errors)
+                        ModelState.TryAddModelError(error.Code, error.Description);
+
+                    return BadRequest(ModelState);
+                }
+
+                return NoContent();
             }
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the {nameof(DeleteUser)} action {ex} ");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         /// <summary>Change user password</summary>
@@ -177,18 +183,26 @@ namespace WebApp.Api.Controllers
         [HttpPut("change_password")]
         public async Task<IActionResult> ChangePassword([FromBody] UserChangePasswordDto passwords)
         {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            var result = await _userManager.ChangePasswordAsync(user, passwords.OldPassword, passwords.NewPassword);
-
-            if (result.Succeeded == false)
+            try
             {
-                foreach (var error in result.Errors)
-                    ModelState.TryAddModelError(error.Code, error.Description);
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                var result = await _userManager.ChangePasswordAsync(user, passwords.OldPassword, passwords.NewPassword);
 
-                return BadRequest(ModelState);
+                if (result.Succeeded == false)
+                {
+                    foreach (var error in result.Errors)
+                        ModelState.TryAddModelError(error.Code, error.Description);
+
+                    return BadRequest(ModelState);
+                }
+
+                return Ok();
             }
-
-            return Ok();
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong in the {nameof(ChangePassword)} action {ex} ");
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }
