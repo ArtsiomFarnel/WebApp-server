@@ -6,9 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp.Application.Abstractions;
 using WebApp.Application.Interfaces;
 using WebApp.Application.Models.DataTransferObjects.Incoming.Users;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Users;
+using WebApp.Application.Models.RequestFeatures.Baskets;
 using WebApp.Data.Entities;
 
 namespace WebApp.Api.Controllers
@@ -26,17 +28,21 @@ namespace WebApp.Api.Controllers
         private readonly RoleManager<Role> _roleManager;
         private readonly IAuthenticationManager _authManager;
 
+        private readonly IRepositoryManager _repository;
+
         public AccountController(ILoggerManager logger, 
             IMapper mapper, 
             UserManager<User> userManager,
             RoleManager<Role> roleManager,
-            IAuthenticationManager authManager)
+            IAuthenticationManager authManager,
+            IRepositoryManager repository)
         {
             _logger = logger;
             _mapper = mapper;
             _userManager = userManager;
             _roleManager = roleManager;
             _authManager = authManager;
+            _repository = repository;
         }
 
         /// <summary>
@@ -134,6 +140,55 @@ namespace WebApp.Api.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+        
+        /// <summary>Delete a user</summary>
+        /// <param name="userValid"></param>
+        /// <returns>No content</returns>
+        [Authorize]
+        [HttpDelete("delete_user")]
+        public async Task<IActionResult> DeleteUser([FromBody] UserValidationDto userValid)
+        {
+            var user = await _userManager.FindByNameAsync(userValid.UserName);
 
+            //delete basket
+            var p = new BasketParameters();
+            var basket = await _repository.Baskets.GetAllBasketItemsAsync(p, false, user.Id);
+            foreach (var b in basket)
+                _repository.Baskets.Delete(b);
+            await _repository.SaveAsync();
+
+            var result = await _userManager.DeleteAsync(user);
+
+            if (result.Succeeded == false)
+            {
+                foreach (var error in result.Errors)
+                    ModelState.TryAddModelError(error.Code, error.Description);
+
+                return BadRequest(ModelState);
+            }
+
+            return NoContent();
+        }
+
+        /// <summary>Change user password</summary>
+        /// <param name="passwords"></param>
+        /// <returns>No content</returns>
+        [Authorize]
+        [HttpPut("change_password")]
+        public async Task<IActionResult> ChangePassword([FromBody] UserChangePasswordDto passwords)
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var result = await _userManager.ChangePasswordAsync(user, passwords.OldPassword, passwords.NewPassword);
+
+            if (result.Succeeded == false)
+            {
+                foreach (var error in result.Errors)
+                    ModelState.TryAddModelError(error.Code, error.Description);
+
+                return BadRequest(ModelState);
+            }
+
+            return Ok();
+        }
     }
 }

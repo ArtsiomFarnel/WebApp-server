@@ -19,7 +19,7 @@ namespace WebApp.Application.Models.DataTransferObjects
             CreateMap<UserRegistrationDto, User>();
             CreateMap<UserRegistrationDto, UserAuthenticationDto>();
             CreateMap<User, UserFullInfoDto>();
-            CreateMap<UserChangeProfileDto, User>();
+            CreateMap<UserChangePasswordDto, User>();
 
             CreateMap<Product, ProductFullInfoDto>()
                 .ForMember(p => p.Category, opt => opt.MapFrom(x => x.Category.Name))

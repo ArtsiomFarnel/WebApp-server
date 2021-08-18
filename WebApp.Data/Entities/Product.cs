@@ -22,5 +22,7 @@ namespace WebApp.Data.Entities
 
         public int ProviderId { get; set; }
         public Provider Provider { get; set; }
+
+        public IEnumerable<Basket> Baskets { get; set; }
     }
 }

@@ -24,6 +24,16 @@
             </summary>
             <returns>Authenticated user</returns>
         </member>
+        <member name="M:WebApp.Api.Controllers.AccountController.DeleteUser(WebApp.Application.Models.DataTransferObjects.Incoming.Users.UserValidationDto)">
+            <summary>Delete a user</summary>
+            <param name="userValid"></param>
+            <returns>No content</returns>
+        </member>
+        <member name="M:WebApp.Api.Controllers.AccountController.ChangePassword(WebApp.Application.Models.DataTransferObjects.Incoming.Users.UserChangePasswordDto)">
+            <summary>Change user password</summary>
+            <param name="passwords"></param>
+            <returns>No content</returns>
+        </member>
         <member name="M:WebApp.Api.Controllers.V1.BasketsController.GetBasket(WebApp.Application.Models.RequestFeatures.Baskets.BasketParameters)">
             <summary>
             Gets the basket of current user
