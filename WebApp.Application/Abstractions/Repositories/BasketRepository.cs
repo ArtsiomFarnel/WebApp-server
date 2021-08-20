@@ -14,7 +14,8 @@ namespace WebApp.Application.Abstractions.Repositories
     public interface IBasketRepository : IRepositoryBase<Basket>
     {
         Task<PagedList<Basket>> GetAllBasketItemsAsync(BasketParameters param, bool trackChanges, string userId);
-        Task<Basket> GetBasketItemsByIdAsync(int id, bool trackChanges, string userId);
+        Task<Basket> GetBasketItemByIdAsync(int id, bool trackChanges, string userId);
+        Task<Basket> GetBasketItemByProductIdAsync(int id, bool trackChanges, string userId);
     }
 
     public class BasketRepository : RepositoryBase<Basket>, IBasketRepository
@@ -34,8 +35,14 @@ namespace WebApp.Application.Abstractions.Repositories
             return PagedList<Basket>.ToPagedList(basket, param.PageNumber, param.PageSize);
         }
 
-        public async Task<Basket> GetBasketItemsByIdAsync(int id, bool trackChanges, string userId) =>
+        public async Task<Basket> GetBasketItemByIdAsync(int id, bool trackChanges, string userId) =>
             await GetByCondition(p => p.Id == id, trackChanges)
+                .Where(b => b.UserId.Equals(userId))
+                .Include(b => b.Product)
+                .FirstOrDefaultAsync();
+
+        public async Task<Basket> GetBasketItemByProductIdAsync(int id, bool trackChanges, string userId) =>
+            await GetByCondition(p => p.ProductId == id, trackChanges)
                 .Where(b => b.UserId.Equals(userId))
                 .Include(b => b.Product)
                 .FirstOrDefaultAsync();

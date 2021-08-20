@@ -67,7 +67,8 @@ namespace WebApp.Application.Services
                 issuer: jwtSettings.GetSection("validIssuer").Value,
                 audience: jwtSettings.GetSection("validAudience").Value,
                 claims: claims,
-                expires: DateTime.Now.AddHours(Convert.ToDouble(jwtSettings.GetSection("expires").Value)), signingCredentials: signingCredentials);
+                expires: DateTime.Now.AddHours(Convert.ToDouble(jwtSettings.GetSection("expires").Value)), 
+                signingCredentials: signingCredentials);
             return tokenOptions;
         }
     }

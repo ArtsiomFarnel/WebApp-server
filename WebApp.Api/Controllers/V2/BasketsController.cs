@@ -81,7 +81,7 @@ namespace WebApp.Api.Controllers.V2
             try
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                var basketItem = await _repository.Baskets.GetBasketItemsByIdAsync((int)id, true, user.Id);
+                var basketItem = await _repository.Baskets.GetBasketItemByProductIdAsync((int)id, true, user.Id);
                 if (basketItem != null)
                 {
                     basketItem.Amount++;
@@ -120,7 +120,7 @@ namespace WebApp.Api.Controllers.V2
             try
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                var basketItem = await _repository.Baskets.GetBasketItemsByIdAsync((int)id, true, user.Id);
+                var basketItem = await _repository.Baskets.GetBasketItemByIdAsync((int)id, true, user.Id);
 
                 _repository.Baskets.Delete(basketItem);
                 await _repository.SaveAsync();
@@ -148,7 +148,7 @@ namespace WebApp.Api.Controllers.V2
             try
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                var basketItem = await _repository.Baskets.GetBasketItemsByIdAsync((int)id, true, user.Id);
+                var basketItem = await _repository.Baskets.GetBasketItemByIdAsync((int)id, true, user.Id);
 
                 basketItem.Amount = amountUp.Amount;
                 await _repository.SaveAsync();
