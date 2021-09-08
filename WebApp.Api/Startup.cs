@@ -38,7 +38,9 @@ namespace WebApp.Api
             services.ConfigureIdentity();
             services.ConfigureJWT(Configuration);
             services.ConfigureAuthenticationManager();
-            
+
+            services.ConfigureMassTransit();
+
             services.ConfigureSwagger();
         }
 
