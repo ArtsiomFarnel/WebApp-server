@@ -23,6 +23,7 @@ using WebApp.Application.Models.DataTransferObjects.Outgoing.Baskets;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Categories;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Products;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Providers;
+using WebApp.Application.Models.DataTransferObjects.Shared;
 using WebApp.Application.Services;
 using WebApp.Data.Entities;
 using WebApp.Infrastructure;
@@ -44,15 +45,17 @@ namespace WebApp.Api.Extensions
         {
             services.AddMassTransit(x =>
             {
-                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
+                x.UsingRabbitMq((ctx, cfg) =>
                 {
-                    config.Host(new Uri("rabbitmq://localhost"), h =>
+                    cfg.Host(new Uri("rabbitmq://localhost"), h =>
                     {
                         h.Username("guest");
                         h.Password("guest");
                     });
-                }));
+                });
+                
             });
+
             services.AddMassTransitHostedService();
         }
         

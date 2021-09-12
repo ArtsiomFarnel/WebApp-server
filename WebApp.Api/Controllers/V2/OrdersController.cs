@@ -14,11 +14,11 @@ namespace WebApp.Api.Controllers.V2
     [Route("v{version:apiVersion}/orders")]
     public class OrdersController : ControllerBase
     {
-        private readonly IBus _bus;
+        private readonly IPublishEndpoint _publishEndpoint;
 
-        public OrdersController(IBus bus)
+        public OrdersController(IPublishEndpoint publishEndpoint)
         {
-            _bus = bus;
+            _publishEndpoint = publishEndpoint;
         }
 
         [HttpPost]
@@ -26,9 +26,12 @@ namespace WebApp.Api.Controllers.V2
         {
             if (order != null)
             {
+                /*
                 Uri uri = new Uri("rabbitmq://localhost/orders");
                 var endPoint = await _bus.GetSendEndpoint(uri);
                 await endPoint.Send(order);
+                */
+                await _publishEndpoint.Publish<Order>(order);
                 return Ok();
             }
             return BadRequest();
