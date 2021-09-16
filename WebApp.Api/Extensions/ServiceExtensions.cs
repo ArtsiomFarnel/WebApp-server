@@ -23,10 +23,10 @@ using WebApp.Application.Models.DataTransferObjects.Outgoing.Baskets;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Categories;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Products;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Providers;
-using WebApp.Application.Models.DataTransferObjects.Shared;
 using WebApp.Application.Services;
 using WebApp.Data.Entities;
 using WebApp.Infrastructure;
+using MessageBrokerShared;
 
 namespace WebApp.Api.Extensions
 {
@@ -47,10 +47,10 @@ namespace WebApp.Api.Extensions
             {
                 x.UsingRabbitMq((ctx, cfg) =>
                 {
-                    cfg.Host(new Uri("rabbitmq://localhost"), h =>
+                    cfg.Host(new Uri(MassTransitConfiguration.Uri), h =>
                     {
-                        h.Username("guest");
-                        h.Password("guest");
+                        h.Username(MassTransitConfiguration.UserName);
+                        h.Password(MassTransitConfiguration.Password);
                     });
                 });
                 

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApp.Application.Models.DataTransferObjects.Shared;
+using MessageBrokerShared;
 
 namespace WebApp.Api.Controllers.V2
 {
@@ -22,16 +22,11 @@ namespace WebApp.Api.Controllers.V2
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrder(Order order)
+        public async Task<IActionResult> CreateOrder(OrderFullInfo order)
         {
             if (order != null)
             {
-                /*
-                Uri uri = new Uri("rabbitmq://localhost/orders");
-                var endPoint = await _bus.GetSendEndpoint(uri);
-                await endPoint.Send(order);
-                */
-                await _publishEndpoint.Publish<Order>(order);
+                await _publishEndpoint.Publish<OrderFullInfo>(order);
                 return Ok();
             }
             return BadRequest();
