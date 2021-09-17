@@ -1,13 +1,14 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace WebAppUnitTests
+namespace WebApp.WebAppUnitTests.Controllers
 {
     [TestClass]
-    public class UnitTest1
+    public class ProductsControllerUnitTest
     {
         [TestMethod]
         public void TestMethod1()
         {
+            
         }
     }
 }
