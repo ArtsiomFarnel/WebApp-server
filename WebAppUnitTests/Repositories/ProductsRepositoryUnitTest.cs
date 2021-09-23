@@ -21,9 +21,18 @@ namespace WebApp.WebAppUnitTests.Repositories
         };
 
         [TestMethod]
-        public void GetOneTestMethod()
+        public async Task GetOneTestMethodAsync()
         {
+            int id = 1;
+            var mockRep = new Mock<IProductRepository>();
+            mockRep.Setup(p => p.GetProductByIdAsync(id, false).Result)
+                .Returns(productsInMemoryDatabase.FirstOrDefault(p => p.Id == id));
 
+            var product = await mockRep.Object.GetProductByIdAsync(id, false);
+
+            Assert.IsNotNull(product);
+            Assert.AreEqual(product.Id, 1);
+            Assert.AreEqual(product.Name, "product1");
         }
     }
 }
