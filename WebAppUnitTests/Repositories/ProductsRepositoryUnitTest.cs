@@ -32,6 +32,7 @@ namespace WebApp.WebAppUnitTests.Repositories
             Assert.NotNull(product);
             Assert.Equal(1, product.Id);
             Assert.Equal("product1", product.Name);
+            //test
         }
     }
 }
