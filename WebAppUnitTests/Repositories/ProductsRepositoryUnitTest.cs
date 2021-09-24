@@ -19,6 +19,11 @@ namespace WebApp.WebAppUnitTests.Repositories
             new Product { Id = 3, Name = "product3", CategoryId = 1, ProviderId = 1 }
         };
 
+        public ProductsRepositoryUnitTest()
+        {
+
+        }
+
         [Fact]
         public async Task GetOneTestMethodAsync()
         {

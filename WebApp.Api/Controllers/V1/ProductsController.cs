@@ -53,7 +53,7 @@ namespace WebApp.Api.Controllers.V1
             try
             {
                 var products = await _repository.Products.GetAllProductsAsync(param, false);
-                Response.Headers.Add("pagination", JsonConvert.SerializeObject(products.MetaData));
+                Response?.Headers?.Add("pagination", JsonConvert.SerializeObject(products.MetaData));
 
                 var result = _mapper.Map<IEnumerable<ProductFullInfoDto>>(products);
 
