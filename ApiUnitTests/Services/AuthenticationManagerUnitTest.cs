@@ -1,12 +1,11 @@
-﻿
-
-using Xunit;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace WebApp.WebAppUnitTests.Services
 {
+    [TestClass]
     public class AuthenticationManagerUnitTest
     {
-        [Fact]
+        [TestMethod]
         public void TestMethod1()
         {
 

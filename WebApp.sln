@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "WebApp.Appli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBrokerShared", "..\MessageBrokerShared\MessageBrokerShared.csproj", "{89B4F27A-DE6E-4393-AEFD-93ECBA2567A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppUnitTests", "WebAppUnitTests\WebAppUnitTests.csproj", "{ADD88E3A-4125-41E8-84B3-065B81DAC37F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppUnitTests", "WebAppUnitTests\WebAppUnitTests.csproj", "{ADD88E3A-4125-41E8-84B3-065B81DAC37F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

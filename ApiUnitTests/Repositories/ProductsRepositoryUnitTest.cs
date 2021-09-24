@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +7,10 @@ using System.Threading.Tasks;
 using WebApp.Application.Abstractions.Repositories;
 using WebApp.Data.Entities;
 using WebApp.Infrastructure;
-using Xunit;
 
 namespace WebApp.WebAppUnitTests.Repositories
 {
+    [TestClass]
     public class ProductsRepositoryUnitTest
     {
         private readonly List<Product> productsInMemoryDatabase = new List<Product>
@@ -19,7 +20,7 @@ namespace WebApp.WebAppUnitTests.Repositories
             new Product { Id = 3, Name = "product3", CategoryId = 1, ProviderId = 1 }
         };
 
-        [Fact]
+        [TestMethod]
         public async Task GetOneTestMethodAsync()
         {
             int id = 1;
@@ -29,9 +30,9 @@ namespace WebApp.WebAppUnitTests.Repositories
 
             var product = await mockRep.Object.GetProductByIdAsync(id, false);
 
-            Assert.NotNull(product);
-            Assert.Equal(1, product.Id);
-            Assert.Equal("product1", product.Name);
+            Assert.IsNotNull(product);
+            Assert.AreEqual(product.Id, 1);
+            Assert.AreEqual(product.Name, "product1");
         }
     }
 }
