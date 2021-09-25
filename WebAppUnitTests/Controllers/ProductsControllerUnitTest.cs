@@ -19,21 +19,21 @@ namespace WebApp.WebAppUnitTests.Controllers
 {
     public class ProductsControllerUnitTest
     {
-        private ProductsController controller;
-        private ProductParameters productParameters;
+        private readonly ProductsController _controller;
+        private readonly ProductParameters _productParameters;
         private readonly Mock<ILoggerManager> _loggerManager;
         private readonly Mock<IRepositoryManager> _repositoryManager;
         private readonly Mock<IMapper> _mapper;
         private readonly Mock<IDataShaper<ProductFullInfoDto>> _dataShaper;
 
-        private readonly PagedList<Product> productsInMemoryDatabase = new PagedList<Product>(new List<Product>
+        private readonly PagedList<Product> productsInMemory = new PagedList<Product>(new List<Product>
         {
             new Product { Id = 1, Name = "product1", CategoryId = 1, ProviderId = 1 },
             new Product { Id = 2, Name = "product2", CategoryId = 1, ProviderId = 1 },
             new Product { Id = 3, Name = "product3", CategoryId = 1, ProviderId = 1 }
         }, 3, 1, 1);
 
-        private readonly Product product = new Product
+        private readonly Product productInMemory = new Product
         {
             Id = 1, Name = "product1", CategoryId = 1, ProviderId = 1
         };
@@ -45,21 +45,28 @@ namespace WebApp.WebAppUnitTests.Controllers
             _mapper = new Mock<IMapper>();
             _dataShaper = new Mock<IDataShaper<ProductFullInfoDto>>();
 
-            controller = new ProductsController(_loggerManager.Object, _repositoryManager.Object, _mapper.Object, _dataShaper.Object);
+            _controller = new ProductsController(_loggerManager.Object, _repositoryManager.Object, _mapper.Object, _dataShaper.Object);
+            _productParameters = new ProductParameters();
 
-            productParameters = new ProductParameters
-            {
-                CategoryId = 1,
-                ProviderId = 1
-            };
-            _repositoryManager.Setup(m => m.Products.GetAllProductsAsync(It.IsAny<ProductParameters>(), It.IsAny<bool>()).Result).Returns(productsInMemoryDatabase);
-            _repositoryManager.Setup(m => m.Products.GetProductByIdAsync(It.IsAny<int>(), It.IsAny<bool>()).Result).Returns(product);
+            _repositoryManager.Setup(m => m.Products.GetAllProductsAsync(It.IsAny<ProductParameters>(), It.IsAny<bool>()).Result)
+                .Returns(productsInMemory);
+            _repositoryManager.Setup(m => m.Products.GetProductByIdAsync(It.IsAny<int>(), It.IsAny<bool>()).Result)
+                .Returns(productInMemory);
         }
 
         [Fact]
-        public async Task GetAllProductsTestMethod()
+        public async Task GetAllProductsTestMethodAsync()
         {
-            var result = await controller.GetAllProducts(productParameters);
+            var result = await _controller.GetAllProducts(_productParameters);
+            var okResult = result as OkObjectResult;
+            Assert.NotNull(okResult);
+        }
+
+        [Theory]
+        [InlineData(1, "")]
+        public async Task GetProductTestMethodAsync(int? id, string fields)
+        {
+            var result = await _controller.GetProduct(id, fields);
             var okResult = result as OkObjectResult;
             Assert.NotNull(okResult);
         }
