@@ -9,6 +9,7 @@ using WebApp.Api.Controllers.V1;
 using WebApp.Application.Abstractions;
 using WebApp.Application.Abstractions.Repositories;
 using WebApp.Application.Interfaces;
+using WebApp.Application.Models.DataTransferObjects.Incoming.Products;
 using WebApp.Application.Models.DataTransferObjects.Outgoing.Products;
 using WebApp.Application.Models.RequestFeatures;
 using WebApp.Application.Models.RequestFeatures.Product;
@@ -63,12 +64,50 @@ namespace WebApp.WebAppUnitTests.Controllers
         }
 
         [Theory]
-        [InlineData(1, "")]
+        [InlineData(1, "name")]
         public async Task GetProductTestMethodAsync(int? id, string fields)
         {
             var result = await _controller.GetProduct(id, fields);
             var okResult = result as OkObjectResult;
             Assert.NotNull(okResult);
+        }
+
+        [Theory]
+        [InlineData(1, 1)]
+        public async Task AddProductTestMethodAsync(int categoryId, int providerId)
+        {
+            var result = await _controller.AddProduct(new ProductAddDto
+            { 
+                Name = "test",
+                CategoryId = categoryId,
+                ProviderId = providerId,
+                Cost = 1.0f
+            });
+
+            var okResult = result as OkResult;
+            Assert.NotNull(okResult);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        public async Task DeleteProductTestMethodAsync(int? id)
+        {
+            var result = await _controller.DeleteProduct(id);
+            var objectResponse = Assert.IsType<NoContentResult>(result);
+            Assert.Equal(StatusCodes.Status204NoContent, objectResponse.StatusCode);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        public async Task UpdateProductTestMethodAsync(int? id)
+        {
+            var result = await _controller.UpdateProduct(id, new ProductUpdateDto 
+            {
+                Name = "test",
+                Cost = 1.0f
+            });
+            var objectResponse = Assert.IsType<NoContentResult>(result);
+            Assert.Equal(StatusCodes.Status204NoContent, objectResponse.StatusCode);
         }
     }
 }
