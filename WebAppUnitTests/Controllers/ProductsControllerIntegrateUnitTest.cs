@@ -11,24 +11,19 @@ using Xunit;
 
 namespace WebApp.WebAppUnitTests.Controllers
 {
-    public class ProductsControllerIntegrateUnitTest
+    public class ProductsControllerIntegrateUnitTest : IClassFixture<BaseTestServerFixture>
     {
-        private readonly HttpClient _client;
+        private readonly BaseTestServerFixture _fixture;
 
-        public ProductsControllerIntegrateUnitTest()
+        public ProductsControllerIntegrateUnitTest(BaseTestServerFixture fixture)
         {
-            var webBuilder = new WebHostBuilder()
-                .UseStartup<Startup>();
-
-            var server = new TestServer(webBuilder);
-
-            _client = server.CreateClient();
+            _fixture = fixture;
         }
 
         [Fact]
         public async Task GetAllProductsTestMethodAsync()
         {
-            var apiResponse = await _client.GetAsync("/v2/products/get_all_products");
+            var apiResponse = await _fixture.Client.GetAsync("/v2/products/get_all_products");
             Assert.Equal(StatusCodes.Status200OK, (int) apiResponse.StatusCode);
         }
     }
