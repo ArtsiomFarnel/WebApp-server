@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 
@@ -14,11 +16,16 @@ namespace WebApp.WebAppUnitTests
 
         public BaseTestServerFixture()
         {
-            var builder = new WebHostBuilder()
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+
+            var webBuilder = new WebHostBuilder()
+                .UseConfiguration(builder.Build())
                 .UseEnvironment("Testing")
                 .UseStartup<TestStartup>();
 
-            TestServer = new TestServer(builder);
+            TestServer = new TestServer(webBuilder);
             Client = TestServer.CreateClient();
         }
 
