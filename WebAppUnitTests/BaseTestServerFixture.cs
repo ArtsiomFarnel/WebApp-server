@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using WebApp.Api;
 
 namespace WebApp.WebAppUnitTests
 {
@@ -22,8 +23,7 @@ namespace WebApp.WebAppUnitTests
 
             var webBuilder = new WebHostBuilder()
                 .UseConfiguration(builder.Build())
-                .UseEnvironment("Testing")
-                .UseStartup<TestStartup>();
+                .UseStartup<Startup>();
 
             TestServer = new TestServer(webBuilder);
             Client = TestServer.CreateClient();

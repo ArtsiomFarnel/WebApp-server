@@ -158,7 +158,7 @@ namespace WebApp.Api.Extensions
                         ValidateIssuerSigningKey = true,
                         ValidIssuer = jwtSettings.GetSection("validIssuer").Value,
                         ValidAudience = jwtSettings.GetSection("validAudience").Value,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("super_duper_secret_key"))  //jwtSettings.GetSection("IssuerSigningKey").Value
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.GetSection("IssuerSigningKey").Value))  //jwtSettings.GetSection("IssuerSigningKey").Value
                     };
                 });
         }
