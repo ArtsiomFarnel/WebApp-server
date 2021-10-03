@@ -64,10 +64,10 @@ namespace WebApp.Application.Services
         {
             var jwtSettings = _configuration.GetSection("JwtSettings");
             var tokenOptions = new JwtSecurityToken(
-                issuer: jwtSettings.GetSection("validIssuer").Value,
-                audience: jwtSettings.GetSection("validAudience").Value,
+                issuer: jwtSettings.GetSection("ValidIssuer").Value,
+                audience: jwtSettings.GetSection("ValidAudience").Value,
                 claims: claims,
-                expires: DateTime.Now.AddHours(Convert.ToDouble(jwtSettings.GetSection("expires").Value)), 
+                expires: DateTime.Now.AddHours(Convert.ToDouble(jwtSettings.GetSection("Expires").Value)), 
                 signingCredentials: signingCredentials);
             return tokenOptions;
         }

@@ -19,11 +19,6 @@ namespace WebApp.WebAppUnitTests.Repositories
             new Product { Id = 3, Name = "product3", CategoryId = 1, ProviderId = 1 }
         };
 
-        public ProductsRepositoryUnitTest()
-        {
-
-        }
-
         [Fact]
         public async Task GetOneTestMethodAsync()
         {
@@ -37,7 +32,6 @@ namespace WebApp.WebAppUnitTests.Repositories
             Assert.NotNull(product);
             Assert.Equal(1, product.Id);
             Assert.Equal("product1", product.Name);
-            //test
         }
     }
 }

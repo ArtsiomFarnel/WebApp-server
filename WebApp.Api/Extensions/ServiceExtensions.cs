@@ -156,9 +156,9 @@ namespace WebApp.Api.Extensions
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = jwtSettings.GetSection("validIssuer").Value,
-                        ValidAudience = jwtSettings.GetSection("validAudience").Value,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.GetSection("IssuerSigningKey").Value))  //jwtSettings.GetSection("IssuerSigningKey").Value
+                        ValidIssuer = jwtSettings.GetSection("ValidIssuer").Value,
+                        ValidAudience = jwtSettings.GetSection("ValidAudience").Value,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.GetSection("IssuerSigningKey").Value))
                     };
                 });
         }

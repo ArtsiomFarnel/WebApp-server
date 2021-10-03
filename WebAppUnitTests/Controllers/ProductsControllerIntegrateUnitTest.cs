@@ -24,9 +24,16 @@ namespace WebApp.WebAppUnitTests.Controllers
         public async Task GetAllProductsTestMethodAsync()
         {
             var apiResponse = await _fixture.Client.GetAsync("v2/products/get_all_products");
-            //apiResponse.EnsureSuccessStatusCode();
-            var s = await apiResponse.Content.ReadAsStringAsync();
             Assert.Equal(StatusCodes.Status200OK, (int) apiResponse.StatusCode);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        public async Task GetProductTestMethodAsync(int id)
+        {
+            var apiResponse = await _fixture.Client.GetAsync($"v2/products/get_product/{id}");
+            Assert.Equal(StatusCodes.Status200OK, (int)apiResponse.StatusCode);
         }
     }
 }
